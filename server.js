@@ -13,6 +13,9 @@ var express = require('express');
 var app = express();
 
 // Set up the server
+
+//app.set('port', (process.env.PORT || 3000));
+
 // process.env.PORT is related to deploying on heroku
 var server = app.listen(process.env.PORT || 3000, listen);
 
@@ -22,9 +25,7 @@ function listen() {
   var port = server.address().port;
   console.log('Example app listening at http://' + host + ':' + port);
 }
-
 app.use(express.static('public'));
-
 
 // WebSocket Portion
 // WebSockets work with the HTTP server
@@ -54,5 +55,4 @@ function newConnection(socket) {
     socket.on('disconnect', function() {
       console.log("Client has disconnected");
       */
-    });
-}
+    };
