@@ -1,0 +1,29 @@
+{
+  "name": "monstro-esquisito",
+  "version": "1.0.0",
+  "description": "learning web sockets",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gilfuser/monstro-esquisito.git"
+  },
+  "keywords": [
+    "web",
+    "sockets",
+    "P5.js"
+  ],
+  "author": "Gil Fuser",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gilfuser/monstro-esquisito/issues"
+  },
+  "homepage": "https://github.com/gilfuser/monstro-esquisito#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^1.7.3"
+  }
+}
