@@ -3,7 +3,6 @@
 console.log("My Socket server is running");
 var socket = require('socket.io');
 
-
 // Based off of Shawn Van Every's Live Web
 // http://itp.nyu.edu/~sve204/liveweb_fall2013/week3.html
 
@@ -17,7 +16,7 @@ var app = express();
 //app.set('port', (process.env.PORT || 3000));
 
 // process.env.PORT is related to deploying on heroku
-var server = app.listen(process.env.PORT || 3000, listen);
+var server = app.listen(process.env.PORT || 5000, listen);
 
 // This call back just tells us that the server has started
 function listen() {

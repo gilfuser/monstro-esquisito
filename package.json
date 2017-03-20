@@ -1,6 +1,6 @@
 {
   "name": "monstro-esquisito",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "learning web sockets",
   "main": "server.js",
   "scripts": {
