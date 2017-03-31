@@ -16,31 +16,14 @@ a {
   color: red;
 }
 
-.page-wrap{
-  /*  display: flex;
-  display: -webkit-flex;
-  flex-wrap: wrap;
-
-  position: fixed;
-  border: 0px;
-  padding: 0px;
-  display: flex;
-  flex-flow: column;
-  align-items:flex-start;
-  height: 100vh;*/
-}
 .page-wrap div {
   border: 0px;
 }
 
 .menu {
-  /*
-  display: -webkit-flex;*/
   display: flex;
   flex-direction:column;
   width: 100%;
-  /*  justify-content: space-between;
-  -webkit-flex-wrap: wrap;*/
   flex-wrap: nowrap;
   align-items: flex-start;
   flex: 1;
@@ -55,6 +38,9 @@ a {
   flex:1;
   margin: 0px;
 }
+.menu > div {
+  padding: 5px;
+}
 .menu div {
   box-sizing: border-box;
   flex-direction:row;
@@ -64,10 +50,6 @@ a {
   color: white;
   font-size: 1em;
   font-family: "Courier New", sans-serif;
-}
-
-.menu > div {
-  padding: 5px;
 }
 
 #title-and-brushcolor {
@@ -106,7 +88,7 @@ a {
   padding: 5px 5px 15px;
   width: 100%;
   flex-direction: row;
-  flex-wrap: nowrap;
+  /*flex-wrap: nowrap;*/
   align-items:stretch;
   background-color: rgba(0, 0, 0, 0.5);
 }
@@ -114,11 +96,41 @@ a {
   box-sizing:border-box;
   padding: 5px;
   display: flex;
-  flex:1;
+  /*flex:1;
   order:1;
-  align-self:stretch;
+  align-self:stretch;*/
   flex-direction: column;
   flex-wrap:wrap;
+}
+#thickness > div{
+  display: flex;
+  flex: 1;
+  order: 0;
+}
+#thickness > p{
+  order: -1;
+  padding-bottom: 5px;
+}
+
+#slid-and-point *{
+  display: flex;
+  align-items:flex-start;
+  flex-wrap: nowrap;
+}
+
+#tslid {
+  display: flex;
+  flex: 4;
+  align-items: stretch;
+  flex-direction: column;
+  align-self: stretch;
+}
+#tpoint {
+  order: 1;
+  align-items:center;
+  margin-left: 10px;
+  width: 40px;
+  height:40px;
 }
 
 #toggler {
@@ -163,7 +175,7 @@ label:hover {
   /*  border: none;*/
 }
 #toggler:checked + .page-wrap .menu {
-  margin-top: -380px;
+  margin-top: -395px;
 }
 
 .page-content {
@@ -225,21 +237,35 @@ label:hover {
     flex-direction: row;
     flex-wrap:wrap;
   }
-  #colors-and-thickness  div {
+  #colors-and-thickness > div {
     box-sizing:border-box;
+    align-self: flex-start;
     flex: 1;
     display: flex;
     justify-content:flex-start;
   }
   #colors > div {
-    flex: 0.5;
+    flex: 0.75;
+    align-self: flex-start;
     max-width: 250px;
   }
+
+  #slid-and-point {
+    margin-top: -5px;
+  }
+
+  #tpoint {
+    align-self: center;
+    margin-top: -10px;
+    width: 40px;
+    height:40px;
+  }
+
   #togglerbox  {
     width: 50px;
   }
   #toggler:checked + .page-wrap .menu {
-    margin-top: -234px;
+    margin-top: -250px;
   }
 }
 
@@ -247,7 +273,7 @@ label:hover {
   /* Low end Windows Phone: WGVA width:437px*/
 
   #toggler:checked + .page-wrap .menu {
-    margin-top: -180px;
+    margin-top: -190px;
   }
 }
 
@@ -255,46 +281,6 @@ label:hover {
   /* Low end Windows Phone: WGVA width:437px*/
 
   #toggler:checked + .page-wrap .menu {
-    margin-top: -120px;
+    margin-top: -140px;
   }
 }
-/*
-@media only screen and (min-width: 489px) {
-  /* Low end Windows Phone: WGVA width:480px*/
-/*
-  #toggler:checked + .page-wrap .menu {
-    margin-top: -261px;
-  }
-}
-*//*
-@media only screen and (min-width: 796px) {
-  /* Low end Windows Phone: WGVA width:480px*/
-/*
-  .menu {
-    display: flex;
-    flex:1;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-color: rgb(0, 0, 0, 0.5);
-  }
-  .menu > div {
-    padding: 5px;
-  }
-
-  #title-and-brushcolor {
-    flex:1;
-    padding: 10px;
-  }
-  #colors-and-thickness {
-    box-sizing:border-box;
-    display: flex;
-    flex:1;
-    align-self:flex-start;
-    flex-direction: column;
-    flex-wrap:wrap;
-  }
-
-  #toggler:checked + .page-wrap .menu {
-    margin-top: -210px;
-  }
-}*/

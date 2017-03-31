@@ -46,7 +46,11 @@ function setup() {
   pthick = createP('thickness');
   pthick.parent('thickness');
   tSlider = createSlider(1, 40, 1, 0);
-  tSlider.parent('thickness');
+  tSlider.parent('tslid');
+  thickpoint = createDiv('');
+  thickpoint.style("background-color", "white");
+  thickpoint.parent('tpoint');
+
   // TO DO: Make a sample of the thickness
   /*
   sample = ellipse(0, 0, 20);
@@ -87,6 +91,11 @@ function touchMoved() {
   stroke(data.color[0], data.color[1], data.color[2], data.color[3]);
   line(data.px, data.py, data.x, data.y );
   brushColor.style("background-color", color(data.color[0], data.color[1], data.color[2], data.color[3]));
+
+
+  thickpoint.style("width", lineThickness + "px");
+  thickpoint.style("height", lineThickness + "px");
+  thickpoint.style("border-radius", (lineThickness * 0.5) + "px");
 
   // TO DO! OTHER TOOLS
   //  noStroke();
