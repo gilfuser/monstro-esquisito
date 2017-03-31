@@ -103,12 +103,12 @@ function changeBGcolor() {
   background(bgColor);
   socket.emit('background', data);
 }
-
+/*
 function windowResized() {
   canv.resizeCanvas(windowWidth, windowHeight);
 
 }
-
+*/
 function draw() {
   //colorMode(RGB);
   brushColor.style.backgroundColor = "hsb("+lineColor[0]+","+lineColor[1]+","+lineColor[2]+")";
