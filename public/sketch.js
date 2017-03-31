@@ -66,7 +66,7 @@ function newDrawing(data) {
   lineColor = [hSlider.value(), sSlider.value(), bSlider.value(), map(aSlider.value(), 0, 100, 0, 1)];
   strokeWeight(data.thickness);
   stroke(data.color[0], data.color[1], data.color[2], data.color[3]);
-  line(data.px, data.py, data.x, data.y );
+  line(data.x, data.y,data.px, data.py );
 }
 
 function touchStarted() {
@@ -89,7 +89,7 @@ function touchMoved() {
   lineColor = [hSlider.value(), sSlider.value(), bSlider.value(), map(aSlider.value(), 0, 100, 0, 1)];
   strokeWeight(data.thickness);
   stroke(data.color[0], data.color[1], data.color[2], data.color[3]);
-  line(data.px, data.py, data.x, data.y );
+  line(mouseX, mouseY, pmouseX, pmouseY);
   brushColor.style("background-color", color(data.color[0], data.color[1], data.color[2], data.color[3]));
 
 
