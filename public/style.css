@@ -6,10 +6,10 @@ HVGA width:320px
 html, body {
   margin: 0px;
   padding: 0px;
-  box-sizing: border-box;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   background-color: darkslategray;
+  overflow: hidden;
 }
 a {
   text-decoration: none;
@@ -20,14 +20,14 @@ a {
   /*  display: flex;
   display: -webkit-flex;
   flex-wrap: wrap;
-  */
+
   position: fixed;
   border: 0px;
   padding: 0px;
   display: flex;
   flex-flow: column;
   align-items:flex-start;
-  height: 100vh;
+  height: 100vh;*/
 }
 .page-wrap div {
   border: 0px;
@@ -81,7 +81,7 @@ a {
 #title {
   box-sizing: border-box;
   margin: 0px;
-  padding: 5px;
+  padding: 0px;
   flex:1;
   order: 1;
 }
@@ -103,7 +103,7 @@ a {
 #colors-and-thickness {
   box-sizing: border-box;
   margin: 0px;
-  padding: 10px 5px;
+  padding: 5px 5px 15px;
   width: 100%;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -112,7 +112,7 @@ a {
 }
 #colors > div {
   box-sizing:border-box;
-  padding: 10px;
+  padding: 5px;
   display: flex;
   flex:1;
   order:1;
@@ -163,13 +163,10 @@ label:hover {
   /*  border: none;*/
 }
 #toggler:checked + .page-wrap .menu {
-  margin-top: -430px;
+  margin-top: -380px;
 }
 
 .page-content {
-  flex: 1;
-  order: 3;
-  align-self: stretch;
   margin: 0px;
   padding: 0px;
   z-index: -1;
@@ -182,20 +179,15 @@ label:hover {
 }
 
 #canvas canvas {
-    width: 100% !important;
-    height: auto !important;
+  position:relative;
+  top: -50px;
+  width: 100% !important;
+  height:inherit;
 }
 
 @media only screen and (min-width: 321px) {
   /* Low end Windows Phone: WGVA width:480px*/
 
-  .page-wrap{
-    position:fixed;
-    top: 0px;
-    flex-direction:column;
-    flex-flow: wrap;
-    height: auto;
-  }
   .menu {
     display: flex;
     flex:1;
@@ -203,63 +195,81 @@ label:hover {
     flex-wrap:wrap;
     background-color: rgb(0, 0, 0, 0.5);
   }
+  .menu div {
+    flex-shrink: 0;
+  }
   .menu > div {
     padding: 5px;
   }
 
   #title-and-brushcolor {
-    flex:0.5;
-    padding: 5px;
-  }
-
-  #colors-and-thickness {
-    box-sizing:border-box;
     display: flex;
-    flex:1;
+    flex:0.5;
+    flex-direction: row;
+    align-items:flex-start;
+  }
+  #title-and-brushcolor div {
+    align-self: stretch;
+  }
+  #title {
     align-self:flex-start;
+    flex: initial;
+  }
+  #brushcolor div{
+    padding-top: 5px;
+  }
+  #colors-and-thickness {
+    display: flex;
+    flex: initial;
+    align-items:stretch;
     flex-direction: row;
     flex-wrap:wrap;
   }
-  #colors-and-thickness div {
-      box-sizing:border-box;
-      padding: 10px;
-      margin-right: 0px;
-      display: flex;
-      flex:1;
-      order:1;
-      align-self:stretch;
-      flex-direction: row;
-      flex-wrap:wrap;
+  #colors-and-thickness  div {
+    box-sizing:border-box;
+    flex: 1;
+    display: flex;
+    justify-content:flex-start;
   }
-
-  #colors div {
-      flex-direction: column;
-      align-self: flex-start;
-      flex-wrap:wrap;
+  #colors > div {
+    flex: 0.5;
+    max-width: 250px;
   }
   #togglerbox  {
     width: 50px;
   }
   #toggler:checked + .page-wrap .menu {
-    margin-top: -325px;
-  }
-
-  .page-content {
-    position:absolute;
+    margin-top: -234px;
   }
 }
 
+@media only screen and (min-width: 438px) {
+  /* Low end Windows Phone: WGVA width:437px*/
+
+  #toggler:checked + .page-wrap .menu {
+    margin-top: -180px;
+  }
+}
+
+@media only screen and (min-width: 724px) {
+  /* Low end Windows Phone: WGVA width:437px*/
+
+  #toggler:checked + .page-wrap .menu {
+    margin-top: -120px;
+  }
+}
+/*
 @media only screen and (min-width: 489px) {
   /* Low end Windows Phone: WGVA width:480px*/
-
+/*
   #toggler:checked + .page-wrap .menu {
     margin-top: -261px;
   }
 }
-
+*//*
 @media only screen and (min-width: 796px) {
   /* Low end Windows Phone: WGVA width:480px*/
-
+/*
   .menu {
     display: flex;
     flex:1;
@@ -287,4 +297,4 @@ label:hover {
   #toggler:checked + .page-wrap .menu {
     margin-top: -210px;
   }
-}
+}*/
