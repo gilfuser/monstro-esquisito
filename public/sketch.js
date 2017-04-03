@@ -1,5 +1,4 @@
 var socket;
-
 var bgColor;
 var penColor;
 var colors;
@@ -7,22 +6,23 @@ var lineThickness;
 var lineColor;
 var btnBg;
 var canv;
+var pg;
+var myW;
+var myH;
 
 function setup() {
-  canv = createCanvas(windowWidth, windowHeight);
-  canv.parent('canvas');
   colorMode(HSB);
-
+  canv = createCanvas(windowWidth, windowHeight);
+  canv.position(0, 0);
+  var draw_here = select('.page-content');
+  canv.parent(draw_here);
+  canv.style('z-index', '-1');
   bgColor = [random(0,360), random(0,25), random(10,20)];
-  background(bgColor[0], bgColor[1], bgColor[2]);
   lineColor = [random(0,360), random(25,100), random(50,100), 100];
-  //lineThickness = 100;
-
+  var bodycolor = select('body');
+  bodycolor.style('background-color', color(bgColor[0], bgColor[1], bgColor[2]));
   socket = io.connect();
   socket.on('mouse', newDrawing);
-  socket.on('background', changeBGcolor);
-
-
   brushColor = createDiv('#');
   brushColor.style("background-color", color(lineColor[0],lineColor[1], lineColor[2], lineColor[3] ));
   brushColor.style("color", color(0, 0 ));
@@ -49,31 +49,21 @@ function setup() {
   tSlider.parent('tslid');
   thickpoint = createDiv('');
   thickpoint.style("background-color", "white");
-  thickpoint.parent('tpoint');
-
-  // TO DO: Make a sample of the thickness
-  /*
-  sample = ellipse(0, 0, 20);
-  sample.parent('thickness');
-  */
-  /*
-  btnBg = createButton("bg-color");
-  btnBg.mouseClicked(changeBGcolor);
-  btnBg.parent('thickness');
-  */
+  thickpoint.parent('tpoint');/*
+  pg = createGraphics(windowWidth, windowHeight);
+  pg.parent(draw_here);
+  draw_here.style('background-color', color(50, 50, 50, 0.5));*/
+  draw_here.style('z-index', 5);
 }
+
 function newDrawing(data) {
   lineColor = [hSlider.value(), sSlider.value(), bSlider.value(), map(aSlider.value(), 0, 100, 0, 1)];
   strokeWeight(data.thickness);
   stroke(data.color[0], data.color[1], data.color[2], data.color[3]);
-  line(data.x, data.y,data.px, data.py );
+  pg.line(data.px, data.py, data.x, data.y );
 }
 
-function touchStarted() {
-// do some stuff
-}
-
-function touchMoved() {
+function mouseDragged() {
   //update and send all data
   var data = {
     px: pmouseX,
@@ -84,47 +74,32 @@ function touchMoved() {
     thickness: lineThickness,
   }
   socket.emit('mouse', data);
-
   lineThickness = tSlider.value();
-  lineColor = [hSlider.value(), sSlider.value(), bSlider.value(), map(aSlider.value(), 0, 100, 0, 1)];
+  lineColor = [hSlider.value(), sSlider.value(), bSlider.value(),
+    map(aSlider.value(), 0, 100, 0, 1)];
   strokeWeight(data.thickness);
   stroke(data.color[0], data.color[1], data.color[2], data.color[3]);
-  line(mouseX, mouseY, pmouseX, pmouseY);
-  brushColor.style("background-color", color(data.color[0], data.color[1], data.color[2], data.color[3]));
-
-
+  line(pmouseX, pmouseY, mouseX, mouseY);
+  brushColor.style("background-color",
+  color(data.color[0], data.color[1], data.color[2], data.color[3]));
   thickpoint.style("width", lineThickness + "px");
   thickpoint.style("height", lineThickness + "px");
   thickpoint.style("border-radius", (lineThickness * 0.5) + "px");
-
-  // TO DO! OTHER TOOLS
-  //  noStroke();
-  //  fill(255);
-  //  ellipse(data.x, data.y, punktR, punktR);
-
-  //return false;
 }
 
-function changeBGcolor() {
-  var data = { color: lineColor };
-  //  console.log("bg has changed: " + data.color[0] );
-  bgColor = color(data.color[0], data.color[1], data.color[2], data.color[3]);
-  background(bgColor);
-  socket.emit('background', data);
-}
-/*
-function windowResized() {
-  canv.resizeCanvas(windowWidth, windowHeight);
-
-}
-*/
 function draw() {
-  //colorMode(RGB);
-  brushColor.style.backgroundColor = "hsb("+lineColor[0]+","+lineColor[1]+","+lineColor[2]+")";
-
-  //   colorMode(HSB);
+  brushColor.style.backgroundColor = "hsb("+lineColor[0]+","+lineColor[1]+","+lineColor[2]+")";/*
+  if (mouseIsPressed) {
+    pg.line(pmouseX, pmouseY, mouseX, mouseY);
+    image(pg, 0, 0, width, height);
+  }*/
 
 }
-/*
 
-*/
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);/*
+  myW = windowWidth;
+  myH = windowHeight;
+  pg._renderer.resize(width>>1, height);
+  console.log(pg.width);*/
+}
